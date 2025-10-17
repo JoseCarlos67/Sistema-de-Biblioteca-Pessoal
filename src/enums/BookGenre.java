@@ -1,4 +1,10 @@
 package enums;
 
-public class BookGenre {
+public enum BookGenre {
+    FICCAO,
+    ROMANCE,
+    TECNICO,
+    BIOGRAFIA,
+    MISTERIO,
+    FANTASI;
 }
