@@ -1,6 +1,9 @@
 package entities;
 
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Loan {
     private LocalDate startDate, dueDate, returnDate;
