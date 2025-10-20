@@ -22,7 +22,13 @@ public class Program {
 
     registerUser(myLibary, scanner);
     registerBook(myLibary, scanner);
-    registerLoanBook(myLibary, scanner);
+    String resultLoan = registerLoanBook(myLibary, scanner);
+    System.out.println(resultLoan);
+
+
+    System.out.println(myLibary.findBookByTitle("O senhor dos anéis"));
+
+
     scanner.close();
   }
 
@@ -74,6 +80,7 @@ public class Program {
     Author author = registerAuthor(scanner);
 
     Book newBook = new Book(titleBook, bookGenre, publishDate, author);
+    myLibrary.registerBook(newBook);
   }
 
   public static Author registerAuthor(Scanner scanner) {
@@ -87,13 +94,13 @@ public class Program {
     return new Author(nameAuthor, emailAuthor, nationalityAuthor);
   }
 
-  private static void registerLoanBook(Library myLibrary, Scanner scanner) {
+  private static String registerLoanBook(Library myLibrary, Scanner scanner) {
     System.out.println("=== Empreśtimo ===");
     System.out.print("Título do livro: ");
     String titleBook = scanner.nextLine();
     System.out.print("Apelido do comodatário: ");
     String nickNameUser = scanner.nextLine();
 
-    myLibrary.lendBook(titleBook, nickNameUser);
+    return myLibrary.lendBook(titleBook, nickNameUser);
   }
 }

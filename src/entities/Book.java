@@ -2,9 +2,13 @@ package entities;
 
 import enums.BookGenre;
 
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Book {
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private String title;
     private BookGenre genre;
     private LocalDate publishDate;
@@ -74,12 +78,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", genre=" + genre +
-                ", publishDate=" + publishDate +
-                ", available=" + available +
-                ", author=" + author +
-                '}';
+        return title +
+                " por " +
+                author +
+                " publicado em " + publishDate.format(fmt);
     }
 }

@@ -14,7 +14,7 @@ public class Library {
     }
 
     public void registerUser(User newUser) {
-        userList.add(newUser);
+      userList.add(newUser);
     }
 
     public String lendBook(String bookTitle, String nickName) {
