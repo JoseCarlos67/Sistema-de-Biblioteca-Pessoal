@@ -80,7 +80,7 @@ public class Book {
     public String toString() {
         return title +
                 " por " +
-                author +
+                author.getName() +
                 " publicado em " + publishDate.format(fmt);
     }
 }
