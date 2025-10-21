@@ -21,8 +21,7 @@ public class Program {
 
     registerUser(myLibary, scanner);
     registerBook(myLibary, scanner);
-    String resultLoan = registerLoanBook(myLibary, scanner);
-    System.out.println(resultLoan);
+    registerLoanBook(myLibary, scanner);
 
 
     System.out.println();
@@ -87,14 +86,13 @@ public class Program {
             Fiódor Dostoiévski
             dostoiévski@gmail.com
             Russo
+            3
             O senhor dos anéis
             Hokala
             1984
             JSilva
             Dom Quixote
             MSantos
-            O pequeno príncipe
-            POliveira
             """;
     return new ByteArrayInputStream(fakeInputString.getBytes());
   }
@@ -154,13 +152,17 @@ public class Program {
     return new Author(nameAuthor, emailAuthor, nationalityAuthor);
   }
 
-  private static String registerLoanBook(Library myLibrary, Scanner scanner) {
+  private static void registerLoanBook(Library myLibrary, Scanner scanner) {
     System.out.println("=== Empreśtimo ===");
-    System.out.print("Título do livro: ");
-    String titleBook = scanner.nextLine();
-    System.out.print("Apelido do comodatário: ");
-    String nickNameUser = scanner.nextLine();
-
-    return myLibrary.lendBook(titleBook, nickNameUser);
+    System.out.print("Quantos emprestimos deseja realizar? ");
+    int qtdLoans = scanner.nextInt();
+    scanner.nextLine();
+    for (int i = 1; i <= qtdLoans; i++) {
+      System.out.print("Título do livro: ");
+      String titleBook = scanner.nextLine();
+      System.out.print("Apelido do comodatário: ");
+      String nickNameUser = scanner.nextLine();
+      System.out.println(myLibrary.lendBook(titleBook, nickNameUser));
+    }
   }
 }
