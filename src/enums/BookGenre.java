@@ -6,5 +6,6 @@ public enum BookGenre {
     TECNICO,
     BIOGRAFIA,
     MISTERIO,
-    FANTASI;
+    DISTOPIA,
+    FANTASIA;
 }
