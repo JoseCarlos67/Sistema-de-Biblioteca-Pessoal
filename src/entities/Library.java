@@ -58,14 +58,7 @@ public class Library {
         return availableBooksList;
     }
 
-    public List<Book> listBorrowedBooks() {
-        List<Book> borrowedBooksList = new ArrayList<>();
-
-        for (Book book : bookList) {
-            if (!book.getAvailable())
-                borrowedBooksList.add(book);
-        }
-
-        return borrowedBooksList;
+    public List<Loan> listBorrowedBooks() {
+        return loanList;
     }
 }

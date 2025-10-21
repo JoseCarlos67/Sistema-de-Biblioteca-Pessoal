@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Loan {
+  private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private LocalDate startDate, dueDate, returnDate;
     private Boolean active;
 
@@ -31,4 +33,12 @@ public class Loan {
     public boolean isOverdue() {
         return active && LocalDate.now().isAfter(this.dueDate);
     }
+
+  @Override
+  public String toString() {
+    return book.getTitle() +
+            " emprestado para " + user.getNickName() +
+            " em " + startDate.format(fmt) +
+            " e deve ser devolvido em " + dueDate.format(fmt);
+  }
 }

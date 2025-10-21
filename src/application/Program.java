@@ -1,14 +1,13 @@
 package application;
 
-import entities.Author;
-import entities.Book;
-import entities.Library;
-import entities.User;
+import entities.*;
 import enums.BookGenre;
 
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Program {
@@ -26,7 +25,13 @@ public class Program {
     System.out.println(resultLoan);
 
 
-    System.out.println(myLibary.findBookByTitle("O senhor dos anéis"));
+    System.out.println();
+
+    List<Loan> borrewedBooks = new ArrayList<>();
+    borrewedBooks = myLibary.listBorrowedBooks();
+    for (Loan book : borrewedBooks) {
+      System.out.println(book);
+    }
 
 
     scanner.close();
