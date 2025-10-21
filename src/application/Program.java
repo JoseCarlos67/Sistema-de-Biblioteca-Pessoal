@@ -56,6 +56,7 @@ public class Program {
             pedro.oliveira@email.com
             35991919194
             POliveira
+            5
             O senhor dos anéis
             FANTASIA
             29/07/1954
@@ -103,7 +104,7 @@ public class Program {
     System.out.print("Quantos usuários deseja cadastrar? ");
     int qtdUsers = scanner.nextInt();
     scanner.nextLine();
-    for (int i = 1; i <= qtdUsers; i++){
+    for (int i = 1; i <= qtdUsers; i++) {
       System.out.print("Nome: ");
       String nameUser = scanner.nextLine();
       System.out.print("E-mail: ");
@@ -121,19 +122,25 @@ public class Program {
 
   public static void registerBook(Library myLibrary, Scanner scanner) {
     System.out.println("=== Registro de Livro ===");
-    System.out.print("Título: ");
-    String titleBook = scanner.nextLine();
-    System.out.print("Gênero: ");
-    BookGenre bookGenre = BookGenre.valueOf(scanner.nextLine());
-    System.out.print("Data de publicação: ");
-    String publishDateString = scanner.nextLine();
-    DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    LocalDate publishDate = LocalDate.parse(publishDateString, fmt1);
+    System.out.print("Quantos livros deseja registrar? ");
+    int qtdBooks = scanner.nextInt();
+    scanner.nextLine();
+    for (int i = 1; i <= qtdBooks; i++) {
+      System.out.print("Título: ");
+      String titleBook = scanner.nextLine();
+      System.out.print("Gênero: ");
+      BookGenre bookGenre = BookGenre.valueOf(scanner.nextLine());
+      System.out.print("Data de publicação: ");
+      String publishDateString = scanner.nextLine();
+      DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+      LocalDate publishDate = LocalDate.parse(publishDateString, fmt1);
 
-    Author author = registerAuthor(scanner);
+      Author author = registerAuthor(scanner);
 
-    Book newBook = new Book(titleBook, bookGenre, publishDate, author);
-    myLibrary.registerBook(newBook);
+      Book newBook = new Book(titleBook, bookGenre, publishDate, author);
+      myLibrary.registerBook(newBook);
+
+    }
   }
 
   public static Author registerAuthor(Scanner scanner) {
