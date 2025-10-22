@@ -15,8 +15,8 @@ import java.util.Scanner;
 
 public class Program {
   public static void main(String[] args) {
-    ByteArrayInputStream fakeInput = autofillingOfData();
-    System.setIn(fakeInput);
+//    ByteArrayInputStream fakeInput = autofillingOfData();
+//    System.setIn(fakeInput);
 
     Scanner scanner = new Scanner(System.in);
 
