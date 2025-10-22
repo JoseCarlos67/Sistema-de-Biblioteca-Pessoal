@@ -8,31 +8,44 @@ import java.time.format.DateTimeFormatter;
 public class Loan {
   private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private LocalDate startDate, dueDate, returnDate;
-    private Boolean active;
+  private LocalDate startDate, dueDate, returnDate;
+  private Boolean active;
 
-    private Book book;
-    private User user;
+  private Book book;
+  private User user;
 
-    public Loan() {}
+  public Loan() {
+  }
 
-    public Loan(Book book, User user, LocalDate startDate, LocalDate dueDate) {
-        this.book = book;
-        this.user = user;
-        this.startDate = startDate;
-        this.dueDate = dueDate;
-        active = true;
-    }
+  public Loan(Book book, User user, LocalDate startDate, LocalDate dueDate) {
+    this.book = book;
+    this.user = user;
+    this.startDate = startDate;
+    this.dueDate = dueDate;
+    active = true;
+  }
 
-    public void closeLoan() {
-        returnDate = LocalDate.now();
-        active = false;
-        book.returnBook();
-    }
+  public void closeLoan() {
+    returnDate = LocalDate.now();
+    active = false;
+    book.returnBook();
+  }
 
-    public boolean isOverdue() {
-        return active && LocalDate.now().isAfter(this.dueDate);
-    }
+  public Book getBook() {
+    return book;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public LocalDate getStartDate() {
+    return startDate;
+  }
+
+  public LocalDate getDueDate() {
+    return dueDate;
+  }
 
   @Override
   public String toString() {

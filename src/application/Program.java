@@ -26,11 +26,7 @@ public class Program {
 
     System.out.println();
 
-    List<Loan> borrewedBooks = new ArrayList<>();
-    borrewedBooks = myLibary.listBorrowedBooks();
-    for (Loan book : borrewedBooks) {
-      System.out.println(book);
-    }
+    System.out.println(myLibary.generateReport());
 
 
     scanner.close();
