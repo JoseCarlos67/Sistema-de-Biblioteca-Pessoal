@@ -2,10 +2,13 @@ package application;
 
 import entities.*;
 import enums.BookGenre;
+import exceptions.DomainException;
 
 import java.io.ByteArrayInputStream;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,15 +22,21 @@ public class Program {
 
     Library myLibary = new Library();
 
-    registerUser(myLibary, scanner);
-    registerBook(myLibary, scanner);
-    registerLoanBook(myLibary, scanner);
-
+    try {
+      registerUser(myLibary, scanner);
+      registerBook(myLibary, scanner);
+      registerLoanBook(myLibary, scanner);
+    } catch (DateTimeParseException e) {
+      System.out.println("Formato de data inválido!");
+    } catch (DomainException e) {
+      System.out.println(e);
+    } catch (RuntimeException e) {
+      System.out.println("Erro inesperado!");
+    }
 
     System.out.println();
 
     System.out.println(myLibary.generateReport());
-
 
     scanner.close();
   }
@@ -54,7 +63,7 @@ public class Program {
             5
             O senhor dos anéis
             FANTASIA
-            29/07/1954
+            29/09/1954
             J.R.R. Tolkien
             tolkien@gmail.com
             Britânico
@@ -114,7 +123,7 @@ public class Program {
 
   }
 
-  public static void registerBook(Library myLibrary, Scanner scanner) {
+  public static void registerBook(Library myLibrary, Scanner scanner) throws DateTimeParseException {
     System.out.println("=== Registro de Livro ===");
     System.out.print("Quantos livros deseja registrar? ");
     int qtdBooks = scanner.nextInt();

@@ -1,11 +1,13 @@
 package entities;
 
+import exceptions.DomainException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-  private List<Book> bookList = new ArrayList<>();
+  public List<Book> bookList = new ArrayList<>();
   private List<User> userList = new ArrayList<>();
   private List<Loan> loanList = new ArrayList<>();
 
@@ -21,8 +23,8 @@ public class Library {
     Book book = findBookByTitle(bookTitle);
     User user = findUserByNickName(nickName);
 
-    if (book == null || user == null || !book.getAvailable()) {
-      return "Falha no empréstimo!";
+    if (!book.getAvailable()) {
+      throw new DomainException("Livro não disponível!");
     }
 
     Loan newLoan = new Loan(book, user, LocalDate.now(), LocalDate.now().plusDays(7));
@@ -36,7 +38,7 @@ public class Library {
       if (book.getTitle().equals(bookTitle))
         return book;
     }
-    return null;
+    throw  new DomainException("Livro não encontrado!");
   }
 
   public User findUserByNickName(String nickName) {
@@ -44,7 +46,7 @@ public class Library {
       if (user.getNickName().equals(nickName))
         return user;
     }
-    return null;
+    throw new DomainException("Usuário não encontrado!");
   }
 
   public List<Book> listAvailableBooks() {
