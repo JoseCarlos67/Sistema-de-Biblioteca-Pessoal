@@ -6,29 +6,52 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Loan {
-    private LocalDate startDate, dueDate, returnDate;
-    private Boolean active;
+  private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private Book book;
-    private User user;
+  private LocalDate startDate, dueDate, returnDate;
+  private Boolean active;
 
-    public Loan() {}
+  private Book book;
+  private User user;
 
-    public Loan(Book book, User user, LocalDate startDate, LocalDate dueDate) {
-        this.book = book;
-        this.user = user;
-        this.startDate = startDate;
-        this.dueDate = dueDate;
-        active = true;
-    }
+  public Loan() {
+  }
 
-    public void closeLoan() {
-        returnDate = LocalDate.now();
-        active = false;
-        book.returnBook();
-    }
+  public Loan(Book book, User user, LocalDate startDate, LocalDate dueDate) {
+    this.book = book;
+    this.user = user;
+    this.startDate = startDate;
+    this.dueDate = dueDate;
+    active = true;
+  }
 
-    public boolean isOverdue() {
-        return active && LocalDate.now().isAfter(this.dueDate);
-    }
+  public void closeLoan() {
+    returnDate = LocalDate.now();
+    active = false;
+    book.returnBook();
+  }
+
+  public Book getBook() {
+    return book;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public LocalDate getStartDate() {
+    return startDate;
+  }
+
+  public LocalDate getDueDate() {
+    return dueDate;
+  }
+
+  @Override
+  public String toString() {
+    return book.getTitle() +
+            " emprestado para " + user.getNickName() +
+            " em " + startDate.format(fmt) +
+            " e deve ser devolvido em " + dueDate.format(fmt);
+  }
 }
